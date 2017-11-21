@@ -1,30 +1,30 @@
 Feature: Log in Google email
 
-  Scenario: Test fuction log in Google email successfully
-    Given An account of google email
-    And a valid password email
-    When I enter username and password to webmail 
-    Then I log in successfully 
-    And redirect to email homepage
+    Scenario Outline: Test function log in 
+        Given a Google webmail
+        When I enter <username> and <password>
+        And click on Sign in button
+        Then I recieve a <message>
 
-  Scenario: Test function log in Google email unsuccessfully
-    Given An account of google email
-    And a invalid password
-    When I enter username and password to webmail
-    Then I recieve a error message "Your username or password wrong"
+        Example:
+        |username         |password        | message                       |  
+        |                 |                |Your email or password is wrong|
+        |linh@gmail.com   |                |Your email or password is wrong|
+        |                 |12345Linh       |Your email or password is wrong|
+        |linh@gmail.com   |!@#$5555782???>>|Your email or password is wrong|
+        |?1<.@gmail.com   |12345Linh       |Your email or password is wrong|
+        |linh@gmail.com   |12345Linh       |You logged in successfully     |
 
-  Scenario: Test function log in Google email unsuccessfully
-    Given An account is not google email
-    And a password includes special characters, numbers and words
-    When I enter username and password to webmail
-    Then I receive a error message "Your username or password wrong"
+    Background: 
+        Given a Google email "linh@gmail.com"
+        And a new password "BachDuong04"
+        And a link "Reset password?" for reset password
 
-  Scenario: Test function forward password successfully
-    Given An account of google email
-    And I forgot password
-    When I enter username into pop-up
-    And click on "Forgot password?" link
-    Then navigate me to reset password pop-up
-    And I enter new password into reset password pop-up
-    And click submit button
-    Then I changed new password successfully
+    Scenario: Test function reset password
+        Given a Google webmail
+        When I enter username "linh@gmail.com "to log in
+        But I forgot my old password
+        And I click on reset password link "Reset password?"
+        Then I enter new password "BachDuong04"
+        Then I receive a message "You changed your password successfully"
+        
