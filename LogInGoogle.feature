@@ -30,3 +30,9 @@ Feature: Log in Google email
         | 1@$%%^&*^&*(&*(&))asfgkjlk  | Wrong password. Try again or click Forgot password to reset it |
         | BachDuong05                 |                                                                |
 
+    Scenario: Test function display email on homepage
+        Given I logged in gmail successful
+        When I navigate to email homepage
+        Then I see my email 
+        And menu bar 
+        
