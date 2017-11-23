@@ -1,48 +1,67 @@
-Feature: Log in Google email
-    Background: 
-        Given a Chrome browser
-        When I open browser 
-        And access to Google webmail
-        Then Iam be asked to enter username and password
-    
-    Scenario Outline: Test function enter username 
+Feature: Sign in Google email
+
+    Backgroud:
+        Given a Google email account 
+        And username is linh@gmail.com
+        And password is BachDuong10
+        And Fullname of account holder is Vu Thuy Linh
+        And phone number to verify account is 0975995774
+        And email to verify account is vulinh@gmail.com
+        When I access to link http://mail.google.com/
+        Then I see a pop-up
+
+    Scenario Outline: Test function enter username into pop-up
         Given an created account
         And I see <label1>
         And <label2>
         And <label3>
         And <link1>
         And <link2>
+        And <button>
         When I enter <username>
         And I click on Next button 
         Then I receive a <message>
             
         Examples:
-        | username        |  message                            | label1 |   label2                     |  label3        | link1         | link2        |
-        |                 | Enter an email or phone number      | Google | Sign in to continue to gmail | Email or phone | Forgot email? | More options | 
-        |12@#$56544       | Enter a valid email or phone number | Google | Sign in to continue to gmail | Email or phone | Forgot email? | More options |
-        |linh@gmail.com   |                                     | Google | Sign in to continue to gmail | Email or phone | Forgot email? | More options |
+        | username        |  message                            | label1 |   label2                     |  label3        | link1         | link2        | button |
+        |                 | Enter an email or phone number      | Google | Sign in to continue to gmail | Email or phone | Forgot email? | More options | Next   |
+        |12@#$56544       | Enter a valid email or phone number | Google | Sign in to continue to gmail | Email or phone | Forgot email? | More options | Next   |
+        |linh@gmail.com   |                                     | Google | Sign in to continue to gmail | Email or phone | Forgot email? | More options | Next   |
 
-    Scenario Outline: Test function enter password
+    Scenario Outline: Test function enter password into pop-up
         Given I enter linh@gmail.com into username successful 
         And I see <label1>
         And <label2>
         And <label3>
         And <dropdownlist> email
-        And <link>
+        And <link1>
+        And <button>
         When I enter a <password>
         And click Next button
         Then I recieve a <message>
-        And I see an email
+        And I navigate to <link2>
 
         Examples: 
-        | password                    | message                                                        | label1 | label2 | label3              | dropdownlist   | link            |
-        |                             | Enter a password                                               | Google | Hi     | Enter your password | linh@gmail.com | Forgot password? |
-        | 1@$%%^&*^&*(&*(&))asfgkjlk  | Wrong password. Try again or click Forgot password to reset it | Google | Hi     | Enter your password | linh@gmail.com | Forgot password? |
-        | BachDuong05                 |                                                                | Google | Hi     | Enter your password | linh@gmail.com | Forgot password? |
+        | password                    | message                                                        | label1 | label2  | label3              | dropdownlist   | link1            | link2                                         | button |      
+        |                             | Enter a password                                               | Google | Hi Linh | Enter your password | linh@gmail.com | Forgot password? |                                               | Next   |
+        | 1@$%%^&*^&*(&*(&))asfgkjlk  | Wrong password. Try again or click Forgot password to reset it | Google | Hi Linh | Enter your password | linh@gmail.com | Forgot password? |                                               | Next   | 
+        | BachDuong05                 |                                                                | Google | Hi Linh | Enter your password | linh@gmail.com | Forgot password? | https://mail.google.com/mail/u/0/?hl=vi#inbox | Next   |
 
-    Scenario: Test function display email on homepage
-        Given I logged in gmail successful
-        When I navigate to email homepage
-        Then I see my email 
-        And menubar 
+    Scenario: Test function re-send email by phone number
+        Given I forgot my email
+        When I click on "Forgot email?" link on pop-up
+        Then I see <label1>
+        And <label2>
+        And <label3>
+        And <label4>
+        And <button>
+        When I enter my <phone number>
+        And click on Next button
+        Then I recieve a <message>
 
+        Examples:
+        | phone number | message                             | label1 | label2          | label3                                    | label4                      | button |  
+        |              | Enter a valid email or phone number | Google | Find your email | Enter your phone number or recovery email | Enter phone number or email | Next   |
+        |0975995774    |                                     | Google | Find your email | Enter your phone number or recovery email | Enter phone number or email | Next   |                            
+        
+        
