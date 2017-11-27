@@ -96,11 +96,11 @@ Feature: Sign in Google email
         Examples:
         | firstname | lastname | message1         | message2        |    
         |           |          | Enter first name | Enter last name |
-		| Linh      |          |                  | Enter last name |
+        | Linh      |          |                  | Enter last name |
         |           | Vu       | Enter first name |                 |
 			
-	 Scenario: Check case re-send email unsucessful by input invalid first name and last name
-		When I click on "Forgot email?" link on pop-up
+    Scenario: Check case re-send email unsucessful by input invalid first name and last name
+	When I click on "Forgot email?" link on pop-up
         Then I should see "Google"
         And I should see "Find your email"
         And I should see "Enter your phone number or recovery email"
@@ -113,15 +113,15 @@ Feature: Sign in Google email
         And I should see "Enter the name on your Google Account"
         When I enter "!@34dhfgjh" into first name field
         And I enter "^*&^*72345" into last name field
-		And click on Next button
-		Then I navigate to next pop-up
-		And I should see "Google"
-		And I should see "No account found "
-		And I should see "There's no Google Account with the info you provided."
-		And I should see a "Try Again" button
+	And click on Next button
+	Then I navigate to next pop-up
+	And I should see "Google"
+	And I should see "No account found "
+	And I should see "There's no Google Account with the info you provided."
+	And I should see a "Try Again" button
 		
-	 Scenario: Check case re-send email successful
-		When I click on "Forgot email?" link on pop-up
+    Scenario: Check case re-send email successful
+	When I click on "Forgot email?" link on pop-up
         Then I should see "Google"
         And I should see "Find your email"
         And I should see "Enter your phone number or recovery email"
@@ -134,12 +134,12 @@ Feature: Sign in Google email
         And I should see "Enter the name on your Google Account"
         When I enter "Linh" into first name field
         And I enter "Vu" into last name field
-		And click on Next button
-		Then I navigate to next pop-up
-		And I should see "Google" 
-		And I should see "Get a verification code"
-		And I should see "Google will send a verification code to 097 599 57 73. Standard rates apply"
-		When I click on "Send" button
-		Then I got a verification code
+	And click on Next button
+	Then I navigate to next pop-up
+	And I should see "Google" 
+	And I should see "Get a verification code"
+	And I should see "Google will send a verification code to 097 599 57 73. Standard rates apply"
+	When I click on "Send" button
+	Then I got a verification code
         
         
