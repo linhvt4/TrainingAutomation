@@ -1,6 +1,6 @@
 Feature: Sign in Google email
 
-    Backgroud:
+    Background:
         Given a Google email account 
         And username is linh@gmail.com
         And password is BachDuong10
