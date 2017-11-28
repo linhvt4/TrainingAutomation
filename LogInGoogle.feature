@@ -121,7 +121,7 @@ Feature: Sign in Google email
 	And I should see a "Try Again" button
 		
    Scenario: Check case re-send email successful
-	When I click on "Forgot email?" link on pop-up
+        When I click on "Forgot email?" link on pop-up
         Then I should see "Google"
         And I should see "Find your email"
         And I should see "Enter your phone number or recovery email"
