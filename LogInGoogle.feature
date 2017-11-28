@@ -55,7 +55,7 @@ Feature: Sign in Google email
         And click on Next button
         Then I recieve a "Enter a valid email or phone number" message
     
-     Scenario: Test function re-send email unsucessful by input invalid phone number 
+    Scenario: Test function re-send email unsucessful by input invalid phone number 
         When I click on "Forgot email?" link on pop-up
         Then I should see "Google"
         And I should see "Find your email"
@@ -75,7 +75,7 @@ Feature: Sign in Google email
         And click on Next button
         Then I recieve a "Enter a valid email or phone number" message
      
-     Scenario Outline: Check case re-send email unsucessful by input first name or last name 
+    Scenario Outline: Check case re-send email unsucessful by input first name or last name 
         When I click on "Forgot email?" link on pop-up
         Then I should see "Google"
         And I should see "Find your email"
@@ -91,12 +91,12 @@ Feature: Sign in Google email
         And I enter <lastname>
         And click on Next button
         Then I got a <message1>
-		And I got a <message2>
+	And I got a <message2>
         
         Examples:
         | firstname | lastname | message1         | message2        |    
         |           |          | Enter first name | Enter last name |
-        | Linh      |          |                  | Enter last name |
+	| Linh      |          |                  | Enter last name |
         |           | Vu       | Enter first name |                 |
 			
     Scenario: Check case re-send email unsucessful by input invalid first name and last name
@@ -120,7 +120,7 @@ Feature: Sign in Google email
 	And I should see "There's no Google Account with the info you provided."
 	And I should see a "Try Again" button
 		
-    Scenario: Check case re-send email successful
+   Scenario: Check case re-send email successful
 	When I click on "Forgot email?" link on pop-up
         Then I should see "Google"
         And I should see "Find your email"
@@ -141,5 +141,9 @@ Feature: Sign in Google email
 	And I should see "Google will send a verification code to 097 599 57 73. Standard rates apply"
 	When I click on "Send" button
 	Then I got a verification code
-        
-        
+	When I enter code into verification code field
+	And click on Next button
+	Then I got email address 		
+		
+				
+		
