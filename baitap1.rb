@@ -2,29 +2,26 @@ require 'cmath'
 
 puts  "Nhap diem toan:"
 toan=gets()
-toan=toan.to_i
+toan=toan.to_f
 puts "Nhap diem ly:"
 ly=gets()
-ly=ly.to_i
+ly=ly.to_f
 puts "Nhap diem hoa:"
 hoa=gets()
-hoa=hoa.to_i
+hoa=hoa.to_f
 diemtrungbinh = (toan + ly + hoa)/3 
-
-case diemtrungbinh
-when diemtrungbinh<4
-    puts  "Hoc sinh yeu"
-when diemtrungbinh>=4 && diemtrungbinh<=7
-    puts "Hoc sinh kha"
-when diemtrungbinh>=8 && diemtrungbinh<=9
-    puts "Hoc sinh gioi"
-else 
-    puts "Hoc sinh xuat sac" 
+if (diemtrungbinh<4)
+    puts "Ban la hoc sinh yeu"            
+elsif ((diemtrungbinh>=4) && (diemtrungbinh<7))
+    puts "Ban la hoc sinh trung binh"
+elsif ((diemtrungbinh>=7) && (diemtrungbinh<8))
+    puts "Ban la hoc sinh kha"
+elsif ((diemtrungbinh>=8) && (diemtrungbinh<9))
+    puts "Ban la hoc sinh gioi"
+else
+    puts "Ban la hoc sinh xuat sac"   
 end
 
-
-
-    
 
             
 
