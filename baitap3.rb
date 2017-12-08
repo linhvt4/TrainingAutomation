@@ -1,5 +1,4 @@
-require 'cmath'
-require 'matrix'
+
 class MultiDimensionalArray
     attr_accessor :array
     def initialize_array array
@@ -21,12 +20,27 @@ class MultiDimensionalArray
     (0...3).collect { |i| array[i][2-i] }.reduce(:+)
     
     end
+
+    def sum_of_elements_all_columns
+    (0...3).collect_concat{|i| [array[i][0], array[i][1],array[i][2]]}.reduce(:+)
+
+    end
+
+    def sort_ascending_array
+        hash=array.flatten.sort!        
+        result1=hash.slice(0, 3)
+        result2=hash.slice(3, 3)
+        result3=hash.slice(6, 3)
+        p result1
+        p result2
+        p result3
+    end
     
     
 end
 
 mda= MultiDimensionalArray.new
-mda.array=[[1,2,3],[4,5,6],[7,8,9]]
+mda.array=[[1,2,5],[4,5,3],[9,8,7]]
 puts "Sum of all elements on diagonal: " 
 puts mda.collect_both_diagonal_elements 
  
@@ -35,4 +49,10 @@ puts mda.collect_left_diagonal_elements
 
 puts "Sum of all elements on right diagonal: " 
 puts mda.collect_right_diagonal_elements 
+
+puts "Sum of all elements on columns"
+ mda.sum_of_elements_all_columns
+
+puts "Array after sorting:"
+ mda.sort_ascending_array
 
